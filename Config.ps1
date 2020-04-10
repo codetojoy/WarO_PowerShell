@@ -6,8 +6,8 @@ TODO: Find a code style/format so that this is idiomatic
 $here = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 . "$here\Player.ps1"
 
-function buildConfig ([string] $configJsonPath) {
-    $json = (Get-Content $configJsonPath | Out-String | ConvertFrom-Json)
+function buildConfigFromJson ([string] $jsonStr) {
+    $json = ConvertFrom-Json $jsonStr
     $numCards = $json.numCards
     $players = @()
     foreach ($jsonPlayer in $json.players) {
@@ -21,9 +21,8 @@ function buildConfig ([string] $configJsonPath) {
     $result
 }
 
-# ----------------- main
-
-$configJsonPath = "./config.json"
-$result = buildConfig $configJsonPath
-Write-Host "TRACER numCards: " $result.Item1
-Write-Host "TRACER num players: " $result.Item2.Count
+function buildConfig ([string] $configJsonPath) {
+    $jsonStr = (Get-Content $configJsonPath | Out-String)
+    $result = buildConfigFromJson $jsonStr
+    $result
+}
