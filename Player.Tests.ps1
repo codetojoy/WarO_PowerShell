@@ -14,7 +14,7 @@ Describe 'buildPlayer' {
     $strategy = $global:getNextStrategy
 
     # test
-    $player = buildPlayer "Mozart" $hand $strategy
+    $player = buildPlayer "Mozart" $strategy $hand
 
     $player.Name | Should -Be "Mozart"
   }
@@ -23,7 +23,7 @@ Describe 'buildPlayer' {
     $strategy = $global:getNextStrategy
 
     # test
-    $player = buildPlayer "Mozart" $hand $strategy
+    $player = buildPlayer "Mozart" $strategy $hand
 
     $player.Hand.Count | Should -Be 4
   }
@@ -32,7 +32,7 @@ Describe 'buildPlayer' {
     $strategy = $global:getNextStrategy
 
     # test
-    $player = buildPlayer "Mozart" $hand $strategy
+    $player = buildPlayer "Mozart" $strategy $hand
     $resultStrategy = $player.Strategy
 
     $result = applyStrategy -strategy $resultStrategy -hand $hand -prizeCard 0
@@ -44,7 +44,7 @@ Describe 'buildPlayer' {
 Describe 'playerTakesTurn' {
   It "player turn should generate a bid" {
     $hand = @(1,2,3,4)
-    $player = buildPlayer "Mozart" $hand $getNextStrategy
+    $player = buildPlayer "Mozart" $getNextStrategy $hand
     $prizeCard = 10
 
     # test
@@ -54,7 +54,7 @@ Describe 'playerTakesTurn' {
   }
   It "player turn should modify the hand" {
     $hand = @(1,2,3,4)
-    $player = buildPlayer "Mozart" $hand $getNextStrategy
+    $player = buildPlayer "Mozart" $getNextStrategy $hand
     $prizeCard = 10
 
     # test
@@ -70,7 +70,7 @@ Describe 'playerTakesTurn' {
 Describe 'playerWins' {
   It "winning player should be awarded prize points" {
     $hand = @(1,2,3,4)
-    $player = buildPlayer "Mozart" $hand $getNextStrategy
+    $player = buildPlayer "Mozart" $getNextStrategy $hand
     $prizeCard = 10
 
     # test
@@ -80,3 +80,16 @@ Describe 'playerWins' {
     $player.NumRoundsWon | Should -Be 1
   }
 }
+
+Describe 'assignHand' {
+  It "basic" {
+    $hand = @(1,2,3,4)
+    $player = buildPlayer "Mozart" $getNextStrategy 
+
+    # test
+    assignHand $player $hand
+
+    $player.Hand.Count | Should -Be 4 
+  }
+}
+

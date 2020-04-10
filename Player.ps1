@@ -3,18 +3,13 @@ TODO: Find a code style/format so that this is idiomatic
       From what I can tell, functions have a different style than formal Cmdlets
 #>
 
-function buildPlayer ([string] $name, [int[]] $hand, [string] $strategy) {
+function buildPlayer ([string] $name, [string] $strategy, [int[]] $hand = @()) {
     $player = @{}
     $player.Name = $name
     $player.Hand = $hand
     $player.Strategy = $strategy
     $player.NumPointsThisGame = 0
     $player.NumRoundsWon = 0
-    $player
-}
-
-function buildPlayer2 ([string] $name, [string] $strategy) {
-    $player = buildPlayer $name $null $strategy
     $player
 }
 

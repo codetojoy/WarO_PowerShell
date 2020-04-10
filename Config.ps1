@@ -13,7 +13,7 @@ function buildConfig ([string] $configJsonPath) {
     foreach ($jsonPlayer in $json.players) {
         $name = $jsonPlayer.name
         $strategy = $jsonPlayer.strategy
-        $player = buildPlayer2 $name $strategy
+        $player = buildPlayer $name $strategy
         $players += $player
     }
 
