@@ -4,8 +4,8 @@ TODO: Find a code style/format so that this is idiomatic
 #>
 
 $here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-. $here\Player.ps1
-. $here\Strategy.ps1
+. "$here\..\Player.ps1"
+. "$here\..\Strategy.ps1"
 
 # Pester tests
 Describe 'buildPlayer' {

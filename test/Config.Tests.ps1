@@ -4,7 +4,7 @@ TODO: Find a code style/format so that this is idiomatic
 #>
 
 $here = (Split-Path -Parent $MyInvocation.MyCommand.Path)
-. $here\Config.ps1
+. "$here\..\Config.ps1"
 
 # Pester tests
 Describe 'buildConfigFromJson' {
