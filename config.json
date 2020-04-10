@@ -2,8 +2,8 @@
     "numCards": 20,
     "players" :
         [
-            {name: "Bach", strategy: "getNext"},
-            {name: "Chopin", strategy: "getNext"},
-            {name: "Mozart", strategy: "getNext"}
+            {"name": "Bach", "strategy": "getNext"},
+            {"name": "Chopin", "strategy": "getNext"},
+            {"name": "Mozart", "strategy": "getNext"}
         ]
 }
