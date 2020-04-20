@@ -21,17 +21,21 @@ $numPlayers = $players.Count
 $handSize = $numCards / ($numPlayers + 1)
 Write-Host "TRACER handSize: " $handSize
 
+# deal cards into hands
 $deck = getDeck $numCards
 $shuffledDeck = shuffleDeck $deck
 $hands = dealDeck $shuffledDeck $handSize
 
+# assign hand to kitty
 $kitty = $hands[0].Group
 Write-Host "TRACER kitty handSize: " $kitty.Count
 $playerHandIndex = 1
 
+# assign hands to players
 foreach ($player in $players) {
     assignHand $player $hands[$playerHandIndex].Group
     $playerHandIndex += 1
 }
 
+# play game
 playGame $kitty $players
